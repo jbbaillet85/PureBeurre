@@ -112,7 +112,7 @@ AUTH_USER_MODEL = "spaceUser.User"
 
 LANGUAGE_CODE = 'fr-FR'
 
-TIME_ZONE = 'Europ/Paris'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br>
+<h1>Créer son espace utilisateur</h1>
+<form method="POST">
+    {%  csrf_token %}
+    {{ form.as_p }}
+    <p>{{ form.error_messages }}</p>
+    <input type="submit" value="Créer un compte"/>
+</form>
+{% endblock %}
