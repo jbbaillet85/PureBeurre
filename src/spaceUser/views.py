@@ -1,6 +1,4 @@
-from collections import UserList
-from django import forms
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -10,6 +8,14 @@ from spaceUser.models import User
 
 # Create your views here.
 def register(request):
+    """[summary]
+
+    Args:
+        request ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
     if request.method == "POST":
         form = RegisterForm(request.POST)
         print(form)
@@ -26,10 +32,12 @@ def identification(request):
         form = LoginForm(request.POST)
         username = request.POST.get("username")
         password= request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('spaceUser')
+        user1 = authenticate(request, username=username, password=password)
+        if user1 is not None:
+            login(request, user1)
+            user_log = User.objects.get(username = user1)
+            context = {"last_name" : user_log.last_name, "email": user_log.email }
+            return render(request, 'spaceUser.html', context)
     else:
         messages.add_message(request, messages.INFO, "Utilisateur ou mot de passe incorrect")    
     form = LoginForm()

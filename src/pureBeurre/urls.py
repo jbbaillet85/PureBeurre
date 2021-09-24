@@ -21,4 +21,5 @@ urlpatterns = [
     path("", include("homepage.urls")),
     path("homepage/", include("homepage.urls")),
     path("spaceUser/", include("spaceUser.urls")),
+    path("products/", include("products.urls")),
 ]
