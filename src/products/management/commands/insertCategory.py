@@ -28,7 +28,7 @@ class Command(BaseCommand):
         list_url_category = []
         index_category = 0
         tags = 0
-        for tags in range(0, 10):
+        for tags in range(0, 100):
             url_category = Command.get_url_category(self, index_category)
             list_url_category.append(url_category)
             tags +=1
@@ -39,33 +39,24 @@ class Command(BaseCommand):
     def get_pnns_groups_1(self, url_category, index_tags):
         response = requests.get(url_category)
         response_json = json.loads(response.text)
-        category = response_json["products"][index_tags]["pnns_groups_1"]
+        try:
+            category = response_json["products"][index_tags]["pnns_groups_1"]
+        except:
+            category = "0"
         print(f"pnns_groups_1: {index_tags}: {category}")
-        return category
-    
-    def get_list_pnns_groups_1(self):
-        list_pnns_groups_1 = []
-        for url_category in Command.get_list_url_category(self):
-            print(f"url category: {url_category}")
-            index_tags = 0
-            for pnns_groups_1 in range(0,23):
-                pnns_groups_1 = Command.get_pnns_groups_1(self, url_category, index_tags)
-                print(f"pnns_groups_1: {index_tags}: type {type(pnns_groups_1)}: {pnns_groups_1}")
-                list_pnns_groups_1.append(pnns_groups_1)
-                index_tags +=1
-        print(f"liste des pnns_groups_1: {set(list_pnns_groups_1)}")
-        return set(list_pnns_groups_1)
+        try:
+            pnns_groups_1 = Category.objects.create(pnns_groups_1=category)
+        except:
+            pnns_groups_1 = f"{category} est déjà enregistré dans la base"
+        return pnns_groups_1
 
     def handle(self, *args, **options):
         """[summary]
         """
-        for pnns_groups_1_name in Command.get_list_pnns_groups_1(self):
-            print(pnns_groups_1_name)
-            try:
-                category_exist = Category.objects.get(pnns_groups_1=pnns_groups_1_name)
-            except:
-                category_exist = None
-            print(f"exist: {category_exist}")
-            if category_exist != pnns_groups_1_name:
-                category = Category.objects.create(pnns_groups_1=pnns_groups_1_name)
-                category.save()
+        for url_json in Command.get_list_url_category(self):
+            print(url_json)
+            index_tags = 0
+            for category in range(0, 23):
+                category = Command.get_pnns_groups_1(self, url_json, index_tags)
+                print(category)
+                index_tags +=1

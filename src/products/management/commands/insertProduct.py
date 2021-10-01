@@ -28,7 +28,7 @@ class Command(BaseCommand):
         list_url_category = []
         index_category = 0
         tags = 0
-        for tags in range(0, 10):
+        for tags in range(0, 100):
             url_category = Command.get_url_category(self, index_category)
             list_url_category.append(url_category)
             tags +=1
@@ -57,22 +57,28 @@ class Command(BaseCommand):
         product_name = product["product_name"]
         try:
             nutriscore_grade = product["nutriscore_grade"]
-        except:
+        except KeyError:
             nutriscore_grade = "0"
-        image_url = product["image_url"]
+        try:
+            image_url = product["image_url"]
+        except KeyError:
+            image_url = ""
         pnns_groups_1 = product["pnns_groups_1"]
         try:
             ingredients_text = product["ingredients_text"]
-        except:
+        except KeyError:
             ingredients_text = "pas d'ingrédients renseignés"
         url = product["url"]
         print(f"url du product: {url}")
-        product = Product.objects.create(product_name=product_name, 
+        try:
+            product = Product.objects.create(product_name=product_name, 
                           nutriscore_grade=nutriscore_grade, 
                           image_url=image_url, 
                           pnns_groups_1=Category.objects.get(pnns_groups_1=pnns_groups_1), 
                           ingredients_text=ingredients_text, 
                           url=url)
+        except:
+            product = None
         return product
  
     def handle(self, *args, **options):
