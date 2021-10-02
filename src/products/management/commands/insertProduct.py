@@ -28,7 +28,8 @@ class Command(BaseCommand):
         list_url_category = []
         index_category = 0
         tags = 0
-        for tags in range(0, 100):
+        count_of_tags_category = 100
+        for tags in range(0, count_of_tags_category):
             url_category = Command.get_url_category(self, index_category)
             list_url_category.append(url_category)
             tags +=1
@@ -87,7 +88,8 @@ class Command(BaseCommand):
         for url_category in Command.get_list_url_category(self):
             print(f"url categorie json: {url_category}")
             index_product = 0
-            for product in range(0, 23):
+            count_of_products = 23
+            for product in range(0, count_of_products):
                 product = Command.get_product(self, url_category, index_product)
                 print(product)
                 index_product+=1

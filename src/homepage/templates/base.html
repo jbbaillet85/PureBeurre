@@ -23,18 +23,24 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <img src="../static/assets/img/logo_pur_beurre.png" alt="logo Pure Beurre"/>
-                <a class="navbar-brand" href="#page-top">Pure Beurre</a>
+                <a href="{% url 'homepage' %}"><img src="../static/assets/img/logo_pur_beurre.png" alt="logo Pure Beurre"/></a>
+                <a class="navbar-brand" href="{% url 'homepage' %}">Pure Beurre</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item">
-                            <form action="" method="GET" class="form">
-                            <input type="text" name="form" id="form" placeholder="chercher" required/>
+                            <form action="{% url 'result_products' %}" method="POST" class="form">
+                                {% csrf_token %}
+                                {{ form_search }}
                             </form></li>
-                        <li class="nav-item"><a href="{% url 'register' %}"><img src="../static/assets/img/icons8-utilisateur-30.png" alt="mon compte"/></a></li>
+                            {% if user.is_authenticated %}
+                        <li class="nav-item"><a href="{% url 'spaceUser' %}"><img src="../static/assets/img/icons8-utilisateur-30.png" alt="mon compte {{ request.user }}"/></a></li>
+                            {% endif %}
+                            {% if not user_authenticated %}
+                            <li class="nav-item"><a href="{% url 'register' %}"><img src="../static/assets/img/icons8-utilisateur-30.png" alt="Créer un compte"/></a></li>
+                            {% endif %}
                         <li class="nav-item"><img src="../static/assets/img/noun_Carrot_29691.png" alt="mes aliments"></li>
-                        <li class="nav-item"><img src="../static/assets/img/se-deconnecter.png" alt="se deconnecter"></li>
+                        <li class="nav-item"><a href="{% url 'logout' %}"><img src="../static/assets/img/se-deconnecter.png" alt="se deconnecter"></li></a>
                     </ul>
                 </div>
             </div>

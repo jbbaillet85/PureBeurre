@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
         <!-- Masthead-->
         {% block content %}
         <br><br><br>
@@ -11,9 +12,10 @@
                     </div>
                     <div class="col-lg-12 align-self-baseline">
                         <h2 class="text-white-75 mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours</h2>
-                        <form action="" method="GET" class="form">
-                            <input type="text" name="form" id="form" placeholder="Produits" required autofocus/>
-                            <input type="submit" value="Chercher">
+                        <form action="{% url 'result_products' %}" method="POST" class="form">
+                            {% csrf_token %}
+                            {{ form_search }}
+                            <input type="submit" value="chercher">
                         </form>
                     </div>
                 </div>

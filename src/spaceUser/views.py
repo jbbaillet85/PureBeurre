@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .form import RegisterForm, LoginForm
@@ -46,3 +46,7 @@ def identification(request):
 @login_required(login_url='login')
 def spaceUser(request):
     return render(request, 'spaceUser.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')

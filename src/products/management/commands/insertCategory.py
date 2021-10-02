@@ -28,7 +28,8 @@ class Command(BaseCommand):
         list_url_category = []
         index_category = 0
         tags = 0
-        for tags in range(0, 100):
+        count_of_tags_category = 100
+        for tags in range(0, count_of_tags_category):
             url_category = Command.get_url_category(self, index_category)
             list_url_category.append(url_category)
             tags +=1
@@ -56,7 +57,8 @@ class Command(BaseCommand):
         for url_json in Command.get_list_url_category(self):
             print(url_json)
             index_tags = 0
-            for category in range(0, 23):
+            count_of_products = 23
+            for category in range(0, count_of_products):
                 category = Command.get_pnns_groups_1(self, url_json, index_tags)
                 print(category)
                 index_tags +=1

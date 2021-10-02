@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br>
+<h1>Résultat des produits</h1>
+<p>Mot clef: {{ search_product }}</p>
+{% for product in products %}
+<a href="{% url 'caracteristiques_subtitution' %}"><img src="{{ product.image_url}}"></a>
+{% endfor %}
+{% endblock %}
