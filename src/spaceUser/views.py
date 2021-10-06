@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .form import RegisterForm, LoginForm
+from homepage.forms import SearchForm
 from spaceUser.models import User
 
 # Create your views here.
@@ -21,8 +22,8 @@ def register(request):
         print(form)
         if form.is_valid():
             form.save()
-            last_name = User.objects.values("last_name")
-            return HttpResponse(f"Vous êtes bien inscris {last_name}" )
+            context = {}
+            return render(request, 'spaceUser.html', context)
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
@@ -36,16 +37,21 @@ def identification(request):
         if user1 is not None:
             login(request, user1)
             user_log = User.objects.get(username = user1)
-            context = {"last_name" : user_log.last_name, "email": user_log.email }
+            form_search = SearchForm()
+            context = {"last_name" : user_log.last_name, "email": user_log.email, 'form_search':form_search }
             return render(request, 'spaceUser.html', context)
     else:
         messages.add_message(request, messages.INFO, "Utilisateur ou mot de passe incorrect")    
     form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    form_search = SearchForm()
+    return render(request, 'login.html', {'form': form, 'form_search':form_search})
 
 @login_required(login_url='login')
 def spaceUser(request):
-    return render(request, 'spaceUser.html')
+    form_search = SearchForm()
+    user = User.objects.get(User.is_authenticated)
+    context = {'form_search':form_search, 'last_name': user.last_name}
+    return render(request, 'spaceUser.html', context)
 
 def logout_user(request):
     logout(request)

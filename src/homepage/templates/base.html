@@ -29,15 +29,15 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item">
-                            <form action="{% url 'result_products' %}" method="POST" class="form">
+                            <form action="{% url 'result_products' %}" method="POST" class="form" name="form_search">
                                 {% csrf_token %}
                                 {{ form_search }}
                             </form></li>
                             {% if user.is_authenticated %}
                         <li class="nav-item"><a href="{% url 'spaceUser' %}"><img src="../static/assets/img/icons8-utilisateur-30.png" alt="mon compte {{ request.user }}"/></a></li>
                             {% endif %}
-                            {% if not user_authenticated %}
-                            <li class="nav-item"><a href="{% url 'register' %}"><img src="../static/assets/img/icons8-utilisateur-30.png" alt="Créer un compte"/></a></li>
+                            {% if not user.is_authenticated %}
+                            <li class="nav-item"><a href="{% url 'register' %}"><img src="../static/assets/img/add-user.jpg" alt="Créer un compte"/></a></li>
                             {% endif %}
                         <li class="nav-item"><img src="../static/assets/img/noun_Carrot_29691.png" alt="mes aliments"></li>
                         <li class="nav-item"><a href="{% url 'logout' %}"><img src="../static/assets/img/se-deconnecter.png" alt="se deconnecter"></li></a>

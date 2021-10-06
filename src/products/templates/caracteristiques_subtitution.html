@@ -2,4 +2,18 @@
 {% block content %}
 <br><br><br>
 <h1>Caractéristiques du produit de substitution</h1>
+<figure>
+<img src="{{ substituted.image_url }}" alt="{{ substituted.product_name }}"/>
+<figcaption>{{ substituted.product_name }}</figcaption>
+</figure>
+
+<p>Vous pouvez remplacer cet aliment par:</p>
+{% for substitution in substitutions %}
+<p>Nutriscore: {{ substitution.nutriscore_grade }}</p>
+<figure>
+<img src="{{ substitution.image_url }}" alt="{{ substitution.product_name }}"/>
+<figcaption>{{ substitution.product_name }}</figcaption>
+</figure>
+<a href="">sauvegarder</a>
+{% endfor %}
 {% endblock %}
