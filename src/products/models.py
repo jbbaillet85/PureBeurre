@@ -1,5 +1,5 @@
 from django.db import models
-
+from spaceUser.models import User
 class Category(models.Model):
     pnns_groups_1 = models.CharField(max_length=150, unique=True)
     
@@ -16,3 +16,10 @@ class Product(models.Model):
     
     def __str__(self) -> str:
         return self.url
+    
+class Favorites(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    
+    def __str__(self) -> str:
+        return f"{self.user} -> {self.product}"

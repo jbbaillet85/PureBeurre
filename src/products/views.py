@@ -28,3 +28,11 @@ def get_caracteristiques_substitution(request):
         form =SearchForm()
     context = {'substituted':substituted, 'substitutions': substitutions.list_products, 'form_search': form}
     return render(request, "caracteristiques_subtitution.html", context)
+
+def get_description_product(request):
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+        product = Product.objects.get(id=product_id)
+        form =SearchForm()
+    context = {'product':product, 'form_search': form}
+    return render(request, "description_product.html", context )

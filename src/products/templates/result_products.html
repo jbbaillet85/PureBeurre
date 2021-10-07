@@ -7,7 +7,9 @@
     {% csrf_token %}
 {% for product in products %}
 <input type="submit" name="product_id" id="choice{{ forloop.counter }}" value="{{ product.id }}"/> 
-<label for="choice{{ forloop.counter }}"><img src="{{ product.image_url}}"></label>
+<label for="choice{{ forloop.counter }}">
+    <img src="{{ product.image_url}}">
+</label>
 {% endfor %}
 </form>
 {% endblock %}

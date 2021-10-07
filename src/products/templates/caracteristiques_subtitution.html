@@ -7,13 +7,16 @@
 <figcaption>{{ substituted.product_name }}</figcaption>
 </figure>
 
-<p>Vous pouvez remplacer cet aliment par:</p>
-{% for substitution in substitutions %}
-<p>Nutriscore: {{ substitution.nutriscore_grade }}</p>
-<figure>
-<img src="{{ substitution.image_url }}" alt="{{ substitution.product_name }}"/>
-<figcaption>{{ substitution.product_name }}</figcaption>
-</figure>
-<a href="">sauvegarder</a>
+<h2>Vous pouvez remplacer cet aliment par:</h2>
+<form action="{% url 'description_product' %}" method="post">
+{% for product in substitutions %}
+{% csrf_token %}
+    <input type="submit" name="product_id" id="choice{{ forloop.counter }}" value="{{ product.id }}"/> 
+<label for="choice{{ forloop.counter }}">
+    <p>Nutriscore: {{ product.nutriscore_grade }}</p>
+    <img src="{{ product.image_url }}" alt="{{ product.product_name }}">
+    <h3>{{ product.product_name }}</h3>
+</label>
 {% endfor %}
+</form>
 {% endblock %}
