@@ -1,5 +1,6 @@
 from django.contrib.postgres.search import SearchVector
-from products.models import Product
+from products.models import Product, Favorites
+from spaceUser.models import User
 
 class AlgoSubtitution:
     def __init__(self, keyword:str) -> None:
@@ -25,3 +26,17 @@ class Substitution:
         list_products = Product.objects.filter(pnns_groups_1=self.category).exclude(pnns_groups_1="0").order_by("nutriscore_grade")[:6]
         print(f"list products: {list_products}")
         return list_products
+    
+class ProductsOfFavorites:
+    def __init__(self, id_user) -> None:
+        self.id_user = id_user
+        self.products = self.get_products_of_favorites()
+
+    def get_products_of_favorites(self):
+        products = []
+        favorites = Favorites.objects.filter(user=self.id_user)
+        for favorite in favorites:
+            product = Product.objects.get(id=favorite.product_id)
+            products.append(product)
+        return products
+        

@@ -49,8 +49,8 @@ def identification(request):
 @login_required(login_url='login')
 def spaceUser(request):
     form_search = SearchForm()
-    user = User.objects.get(User.is_authenticated)
-    context = {'form_search':form_search, 'last_name': user.last_name}
+    user = User.objects.get(id=request.user.id)
+    context = {'form_search':form_search, 'user': user}
     return render(request, 'spaceUser.html', context)
 
 def logout_user(request):

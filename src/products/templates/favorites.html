@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br>
+<h1>Mes produits</h1>
+{% for product in favorites %}
+    <img src="{{ product.image_url }}">
+    <h2>{{ product.product_name }}</2>
+{% endfor %}
+{% endblock %}

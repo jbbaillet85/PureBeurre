@@ -17,3 +17,7 @@ def homepage(request):
     else:
         form =SearchForm()
     return render(request, "homepage.html", {'form_search': form})
+
+def mentions_legales(request):
+    context = {}
+    return render(request, "mentions_legales.html", context)

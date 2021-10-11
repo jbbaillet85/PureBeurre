@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from homepage.forms import SearchForm
-from products.algoSubtitution import AlgoSubtitution, Substitution
-from products.models import Product
+from products.algoSubtitution import AlgoSubtitution, Substitution, ProductsOfFavorites
+from django.contrib.auth.decorators import login_required
+from products.models import Product, Favorites
+from spaceUser.models import User
 
 # Create your views here.
 def get_results_products(request):
@@ -34,5 +36,18 @@ def get_description_product(request):
         product_id = request.POST.get("product_id")
         product = Product.objects.get(id=product_id)
         form =SearchForm()
+        user = User.objects.get(id= request.user.id)
+        Favorites.objects.create(product_id=product_id, user_id=user.id)
     context = {'product':product, 'form_search': form}
     return render(request, "description_product.html", context )
+
+@login_required(login_url='login')
+def get_favorites(request):
+    user = request.user.id
+    try:
+        favorites = ProductsOfFavorites(user)
+    except:
+        favorites = None
+    form =SearchForm()
+    context={'favorites':favorites.products, 'form_search': form}
+    return render(request, "favorites.html", context )

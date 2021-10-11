@@ -20,6 +20,9 @@ class Product(models.Model):
 class Favorites(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    class meta:
+        constraints = models.UniqueConstraint(fields=['user', 'product'], 
+                                              name='favorite_unique',)
     
     def __str__(self) -> str:
         return f"{self.user} -> {self.product}"
