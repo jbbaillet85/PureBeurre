@@ -11,6 +11,9 @@ class AlgoSubtitution:
         search = SearchVector("product_name") + SearchVector("ingredients_text") + SearchVector("url") + SearchVector("pnns_groups_1")
         result_search = Product.objects.annotate(search=search).filter(search=self.keyword).order_by("nutriscore_grade")
         return result_search
+    
+    def __str__(self) -> str:
+        return f"keyword: {self.keyword} - result_search: {self.result_search}"
 
 class Substitution:
     def __init__(self, product_id) -> None:
@@ -27,6 +30,9 @@ class Substitution:
         print(f"list products: {list_products}")
         return list_products
     
+    def __str__(self) -> str:
+        return f"category: {self.category} - products: {self.list_products}"
+    
 class ProductsOfFavorites:
     def __init__(self, id_user) -> None:
         self.id_user = id_user
@@ -40,3 +46,5 @@ class ProductsOfFavorites:
             products.append(product)
         return products
         
+    def __str__(self) -> str:
+        return f"favorite: user: {self.id_user} - products: {self.products}"

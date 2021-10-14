@@ -37,7 +37,10 @@ def get_description_product(request):
         product = Product.objects.get(id=product_id)
         form =SearchForm()
         user = User.objects.get(id= request.user.id)
-        Favorites.objects.create(product_id=product_id, user_id=user.id)
+        try:
+            Favorites.objects.create(product_id=product_id, user_id=user.id)
+        except:
+            print("Le favori est déjàs enregistré")
     context = {'product':product, 'form_search': form}
     return render(request, "description_product.html", context )
 

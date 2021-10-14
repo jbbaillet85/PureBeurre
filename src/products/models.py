@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.constraints import UniqueConstraint
 from spaceUser.models import User
 class Category(models.Model):
     pnns_groups_1 = models.CharField(max_length=150, unique=True)
@@ -20,9 +21,8 @@ class Product(models.Model):
 class Favorites(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    class meta:
-        constraints = models.UniqueConstraint(fields=['user', 'product'], 
-                                              name='favorite_unique',)
-    
+    class Meta:
+        unique_together = [['user_id', 'product_id']]
+
     def __str__(self) -> str:
         return f"{self.user} -> {self.product}"
