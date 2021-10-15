@@ -1,7 +1,7 @@
 # siteWebPureBeurre
 ***
 Projet d'étude Openclassrooms 8: Créez une plateforme pour amateurs de Nutella
-
+[Tableau Trello Agile](https://trello.com/b/YTtPKrDr/site-web-pure-beurre)
 ## Fonctionnalités:
 ***
 - Affichage du champ de recherche dès la page d'accueil
