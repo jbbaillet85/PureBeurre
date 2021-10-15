@@ -6,7 +6,7 @@
     {%  csrf_token %}
     {{ form.as_p }}
     <p>{{ form.error_messages }}</p>
-    <input type="submit" value="Créer un compte"/>
+    <input type="submit" value="Créer un compte" id="submit_register"/>
 </form>
 <p>Si vous avez déjàs un compte <a href="{% url 'login' %}">se connecter</a></p>
 {% endblock %}

@@ -1,0 +1,2 @@
+[run]
+omit = tests/*, homepage/tests/*, products/tests/*, spaceUser/tests/*, src/manage.py
