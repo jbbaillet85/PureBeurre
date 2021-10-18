@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br>
+<h1>Caractéristiques du produit de substitution</h1>
+<figure>
+<img src="{{ substituted.image_url }}" alt="{{ substituted.product_name }}"/>
+<figcaption>{{ substituted.product_name }}</figcaption>
+</figure>
+
+<h2>Vous pouvez remplacer cet aliment par:</h2>
+    {% for product in substitutions %}
+        <form action="{% url 'description_product' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" id="{{ product.id }}" value="{{ product.id }}"/>
+            <p>Nutriscore: {{ product.nutriscore_grade }}</p>
+            <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}"/>
+            <h3>{{ product.product_name }}</h3>
+        </form>
+        <form action="{% url 'favorites' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" id="{{ product.id }}" value="{{ product.id }}"/>
+            <i class="fas fa-save"></i>
+            <input type="submit" name="submit_favorite" value="sauvegarder"/>
+        </form>
+        <br>
+        {% endfor %}
+{% endblock %}

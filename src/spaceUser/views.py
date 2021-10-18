@@ -29,19 +29,20 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 def identification(request):
+    form = LoginForm()
     if request.method == "POST":
         form = LoginForm(request.POST)
-        username = request.POST.get("username")
-        password= request.POST.get('password')
-        user1 = authenticate(request, username=username, password=password)
-        if user1 is not None:
-            login(request, user1)
-            user_log = User.objects.get(username = user1)
-            form_search = SearchForm()
-            context = {"last_name" : user_log.last_name, "email": user_log.email, 'form_search':form_search }
-            return render(request, 'spaceUser.html', context)
-    else:
-        messages.add_message(request, messages.INFO, "Utilisateur ou mot de passe incorrect")    
+        if form.is_valid():
+            user = authenticate(request, username=form.cleaned_data['username'],
+                                password=form.cleaned_data['password'],)
+            if user is not None:
+                login(request, user)
+                messages.add_message(request, messages.INFO, "Vous êtes bien connecté")
+                form_search = SearchForm()
+                context = {"last_name" : user.last_name, "email": user.email, 'form_search':form_search }
+                return render(request, 'spaceUser.html', context)
+            else:
+                messages.add_message(request, messages.INFO, "Utilisateur ou mot de passe incorrect")    
     form = LoginForm()
     form_search = SearchForm()
     return render(request, 'login.html', {'form': form, 'form_search':form_search})

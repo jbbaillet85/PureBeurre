@@ -3,13 +3,12 @@
 <br><br><br>
 <h1>Résultat des produits</h1>
 <p>Mot clef: {{ search_product }}</p>
-<form action="{% url 'caracteristiques_subtitution' %}" method="post">
-    {% csrf_token %}
 {% for product in products %}
-<input type="submit" name="product_id" id="choice{{ forloop.counter }}" value="{{ product.id }}"/> 
-<label for="choice{{ forloop.counter }}">
-    <img src="{{ product.image_url}}">
+<form action="{% url 'choice_subtitution' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" id="{{ product.id }}" value="{{ product.id }}"/>
+    <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}"/>
 </label>
-{% endfor %}
 </form>
+{% endfor %}
 {% endblock %}

@@ -1,5 +1,7 @@
+from django.contrib.auth import login
 from django.shortcuts import render
 from homepage.forms import SearchForm
+from products.forms import FormDescriptionProduct, FormCreateFavorite
 from products.algoSubtitution import AlgoSubtitution, Substitution, ProductsOfFavorites
 from django.contrib.auth.decorators import login_required
 from products.models import Product, Favorites
@@ -22,30 +24,37 @@ def get_results_products(request):
         context = {'form_search': form}
         return render(request, "homepage.html", context)
 
-def get_caracteristiques_substitution(request):
+def get_choice_substitution(request):
+    form =SearchForm()
+    form_description_product = FormDescriptionProduct()
+    form_favorites = FormCreateFavorite()
     if request.method == "POST":
         product_id = request.POST.get("product_id")
         substituted = Product.objects.get(id=product_id)
         substitutions = Substitution(product_id)
-        form =SearchForm()
-    context = {'substituted':substituted, 'substitutions': substitutions.list_products, 'form_search': form}
-    return render(request, "caracteristiques_subtitution.html", context)
+    context = {'substituted':substituted, 'substitutions': substitutions.list_products,
+               'form_search': form, "form_description_product":form_description_product, "form_favorites":form_favorites}
+    return render(request, "choice_subtitution.html", context)
 
+@login_required(login_url='login')
 def get_description_product(request):
     if request.method == "POST":
         product_id = request.POST.get("product_id")
         product = Product.objects.get(id=product_id)
         form =SearchForm()
-        user = User.objects.get(id= request.user.id)
-        try:
-            Favorites.objects.create(product_id=product_id, user_id=user.id)
-        except:
-            print("Le favori est déjàs enregistré")
     context = {'product':product, 'form_search': form}
     return render(request, "description_product.html", context )
 
 @login_required(login_url='login')
 def get_favorites(request):
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+    try:
+        print(f"product_id: {product_id}")
+        print(f"user: {request.user.id}")
+        Favorites.objects.create(product_id=product_id, user_id=request.user.id)
+    except:
+            print("Le favori est déjàs enregistré")
     user = request.user.id
     try:
         favorites = ProductsOfFavorites(user)
