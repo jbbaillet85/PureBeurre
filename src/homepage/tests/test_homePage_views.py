@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 
 import pytest
 from pytest_django.asserts import assertTemplateUsed
-
+from products.algoSubtitution import AlgoSubtitution
 class TestHomepageViews:
     client = Client()
 

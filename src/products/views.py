@@ -1,7 +1,6 @@
 from django.contrib.auth import login
 from django.shortcuts import render
 from homepage.forms import SearchForm
-from products.forms import FormDescriptionProduct, FormCreateFavorite
 from products.algoSubtitution import AlgoSubtitution, Substitution, ProductsOfFavorites
 from django.contrib.auth.decorators import login_required
 from products.models import Product, Favorites
@@ -26,14 +25,12 @@ def get_results_products(request):
 
 def get_choice_substitution(request):
     form =SearchForm()
-    form_description_product = FormDescriptionProduct()
-    form_favorites = FormCreateFavorite()
     if request.method == "POST":
         product_id = request.POST.get("product_id")
         substituted = Product.objects.get(id=product_id)
         substitutions = Substitution(product_id)
     context = {'substituted':substituted, 'substitutions': substitutions.list_products,
-               'form_search': form, "form_description_product":form_description_product, "form_favorites":form_favorites}
+               'form_search': form}
     return render(request, "choice_subtitution.html", context)
 
 @login_required(login_url='login')

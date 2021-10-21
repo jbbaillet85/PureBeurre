@@ -29,25 +29,23 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 def identification(request):
+    form_search = SearchForm()
     form = LoginForm()
     if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            user = authenticate(request, username=form.cleaned_data['username'],
-                                password=form.cleaned_data['password'],)
-            if user is not None:
-                login(request, user)
-                messages.add_message(request, messages.INFO, "Vous êtes bien connecté")
-                form_search = SearchForm()
-                context = {"last_name" : user.last_name, "email": user.email, 'form_search':form_search }
-                return render(request, 'spaceUser.html', context)
-            else:
-                messages.add_message(request, messages.INFO, "Utilisateur ou mot de passe incorrect")    
-    form = LoginForm()
-    form_search = SearchForm()
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request,username=username,
+                                    password=password,)
+        if user is not None:
+            login(request, user)
+            context = {"last_name" : user.last_name, "email": user.email, 'form_search':form_search }
+            return render(request, 'spaceUser.html', context)
+        else:
+            message = "Utilisateur ou mot de passe incorrect"
+            return render(request, 'login.html', {'form': form, 'form_search':form_search, "message":message})
     return render(request, 'login.html', {'form': form, 'form_search':form_search})
 
-@login_required(login_url='login')
+@login_required
 def spaceUser(request):
     form_search = SearchForm()
     user = User.objects.get(id=request.user.id)

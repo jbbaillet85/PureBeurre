@@ -1,5 +1,5 @@
 from django.urls import reverse, resolve
-from products.views import get_caracteristiques_substitution, get_description_product, get_favorites, get_results_products
+from products.views import get_choice_substitution, get_description_product, get_favorites, get_results_products
 
 class TestProductsUrls:
     def test_result_products_url(self):
@@ -10,13 +10,13 @@ class TestProductsUrls:
         assert resolve(url).view_name == 'result_products'
         assert resolve(url).func, get_results_products
 
-    def test_caracteristiques_subtitution_url(self):
+    def test_choice_subtitution_url(self):
 
         """ Testing if the 'caracteristiques_subtitution' route maps to our 'caracteristiques_subtitution' view """
 
-        url = reverse('caracteristiques_subtitution')
-        assert resolve(url).view_name == 'caracteristiques_subtitution'
-        assert resolve(url).func, get_caracteristiques_substitution
+        url = reverse('choice_subtitution')
+        assert resolve(url).view_name == 'choice_subtitution'
+        assert resolve(url).func, get_choice_substitution
         
     def test_description_product_url(self):
 

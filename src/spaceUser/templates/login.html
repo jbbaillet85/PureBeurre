@@ -4,9 +4,11 @@
 <h1>Se connecter à son espace utilisateur</h1>
 <form method="POST">
     {{ form.as_p }}
-    {{form.errors}}
     {%  csrf_token %}
-    <input type="submit" value="Se connecter"/>
+    <input type="submit" value="Se connecter" action="{% url 'login' }"/>
 </form>
-<p>Si vous n'avez pas de compte <a href="{% url 'register' %}">s'enregistrer</a></p>
+{{ form.errors }}
+{{ message }}
+<p>Si vous n'avez pas de compte</p>
+<a href="{% url 'register' %}">s'enregistrer</a>
 {% endblock %}
