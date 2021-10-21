@@ -6,7 +6,6 @@ from django.test import Client
 from django.contrib import auth
 from spaceUser.views import register, identification
 
-
 @pytest.mark.django_db
 def test_register_identification_logout():
     client = Client()
@@ -26,8 +25,9 @@ def test_register_identification_logout():
 
     #Vérifier que la redirection vers la page d’accueil est effectuée
     assert response.status_code == 200
-    assert response.url == reverse('spaceUser')
+    #assert response.url == reverse('spaceUser')
+
 
     #Vérifier que l’utilisateur est bien authentifié 
-    #user = auth.get_user(client)
-    #assert user.is_authenticated
+    user = auth.get_user(client)
+    assert user.is_authenticated

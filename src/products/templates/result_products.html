@@ -1,14 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 <br><br><br>
 <h1>Résultat des produits</h1>
 <p>Mot clef: {{ search_product }}</p>
+<div class="container">
 {% for product in products %}
+<div class="product">
 <form action="{% url 'choice_subtitution' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="product_id" id="{{ product.id }}" value="{{ product.id }}"/>
-    <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}"/>
+    <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}" width="200" height="300"/>
 </label>
 </form>
+</div>
 {% endfor %}
+</div>
 {% endblock %}
