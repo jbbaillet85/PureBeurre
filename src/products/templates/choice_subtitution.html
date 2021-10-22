@@ -3,11 +3,12 @@
 {% block content %}
 <br><br><br>
 <h1>Caractéristiques du produit de substitution</h1>
-<figure>
-<img src="{{ substituted.image_url }}" alt="{{ substituted.product_name }}"/>
-<figcaption>{{ substituted.product_name }}</figcaption>
-</figure>
-
+<div style= "background-image: url('{{ substituted.image_url }}')">
+<br>
+<h2>{{ substituted.product_name }}</h2>
+<br>
+</div>
+<br>
 <h2>Vous pouvez remplacer cet aliment par:</h2>
     <div class="container">
     {% for product in substitutions %}

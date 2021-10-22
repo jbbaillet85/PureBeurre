@@ -2,13 +2,15 @@
 {% load static %}
 {% block content %}
 <br><br><br>
-<h1>Page Aliment</h1>
-<h2>{{ product.product_name }}</h2>
+<div style= "background-image: url('{{ product.image_url }}')">
+<br>
+<h1>{{ product.product_name }}</h1>
+<br>
+</div>
+<br>
+<br>
+</div>
 <br><br>
 <p>Nutriscore: {{ product.nutriscore_grade }}</p>
-<figure>
-<img src="{{ product.image_url }}" alt="{{ product.product_name }}"/>
-<figcaption>{{ substituted.product_name }}</figcaption>
-</figure>
 <p><a href="{{ product.url }}">Fiche OpenFoodFact</a></p>
 {% endblock %}
