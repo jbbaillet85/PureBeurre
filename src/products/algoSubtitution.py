@@ -16,17 +16,16 @@ class AlgoSubtitution:
         return f"keyword: {self.keyword} - result_search: {self.result_search}"
 
 class Substitution:
+    nutriscore = {"a":1, "b":2, "c":3, "d":4, "e":5, "0":"0"}
     def __init__(self, product_id) -> None:
         self.product_id = product_id
-        self.category = self.get_category_of_product()
+        self.product = Product.objects.get(id=self.product_id)
+        self.category = self.product.pnns_groups_1
+        self.nutriscore = Substitution.nutriscore[self.product.nutriscore_grade]
         self.list_products = self.get_list_products_of_category_after_search()
-
-    def get_category_of_product(self):
-        category = Product.objects.get(id=self.product_id)
-        return category.pnns_groups_1
     
     def get_list_products_of_category_after_search(self):
-        list_products = Product.objects.filter(pnns_groups_1=self.category).exclude(pnns_groups_1="0").order_by("nutriscore_grade")[:6]
+        list_products = Product.objects.filter(pnns_groups_1=self.category).exclude(nutriscore_grade="0").filter(nutriscore_grade__gt=self.nutriscore).order_by("nutriscore_grade")[:6]
         print(f"list products: {list_products}")
         return list_products
     
