@@ -4,21 +4,23 @@
 <br><br><br>
 <h1>Caractéristiques du produit de substitution</h1>
 <div style= "background-image: url('{{ substituted.image_url }}')">
-<br>
+<br><br>
 <h2>{{ substituted.product_name }}</h2>
-<br>
+<br><br>
 </div>
 <br>
 <h2>Vous pouvez remplacer cet aliment par:</h2>
-    <div class="container">
+    <div id="portfolio">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
     {% for product in substitutions %}
-        <div class="product">
+        <div class="col-lg-4 col-sm-6">
         <form action="{% url 'description_product' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" id="{{ product.id }}" value="{{ product.id }}"/>
             <p>Nutriscore: {{ product.nutriscore_grade }}</p>
-            <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}" width="200" height="300"/>
-            <figcaption>{{ product.product_name }}</figcaption>
+            <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}" width="200" height="300" class="portfolio-box"/>
+            <figcaption class="portfolio-box">{{ product.product_name }}</figcaption>
         </form>
         <form action="{% url 'favorites' %}" method="post">
             {% csrf_token %}
@@ -26,6 +28,7 @@
             <i class="fa fa-floppy-o" aria-hidden="true"></i>
             <input type="submit" name="submit_favorite" value="sauvegarder"/>
         </form>
+        <br><br>
         </div>
         {% endfor %}
         </div>

@@ -3,13 +3,17 @@
 {% block content %}
 <br><br><br>
 <h1>Mes produits</h1>
-<div class="container">
+<div id="portfolio">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
 {% for product in favorites %}
-    <div class="product">
-    <figure>
-    <img src="{{ product.image_url }}" width="200" height="300">
-    <figcaption>{{ product.product_name }}</figcaption>
-    </figure>
+        <div class="col-lg-4 col-sm-6">
+        <form action="{% url 'description_product' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" id="{{ product.id }}" value="{{ product.id }}"/>
+        <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}" width="200" height="300" class="portfolio-box"/>
+        <figcaption>{{ product.product_name }}</figcaption>
+        </form>
     </div>
 {% endfor %}
 </div>

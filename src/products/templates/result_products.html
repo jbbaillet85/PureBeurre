@@ -4,13 +4,16 @@
 <br><br><br>
 <h1>Résultat des produits</h1>
 <p>Mot clef: {{ search_product }}</p>
-<div class="container">
+        <!-- Portfolio-->
+<div id="portfolio">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
 {% for product in products %}
-<div class="product">
+<div class="col-lg-4 col-sm-6">
 <form action="{% url 'choice_subtitution' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="product_id" id="{{ product.id }}" value="{{ product.id }}"/>
-    <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}" width="200" height="300"/>
+    <input type="image" src="{{ product.image_url }}" alt="{{ product.product_name }}" width="200" height="300" class="portfolio-box"/>
 </form>
 </div>
 <br>

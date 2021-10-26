@@ -3,6 +3,8 @@ from django.test import Client
 from pytest_django.asserts import assertTemplateUsed
 import pytest
 
+from products.algoSubtitution import AlgoSubtitution
+
 
 class TestProductsViews:
     client = Client()
@@ -15,6 +17,5 @@ class TestProductsViews:
         In the first assert, We are testing if our get request returns 200 (OK) status code 
         For the second assert, we are making sure that our view returns the result_products.html template
         """
-        
         assert response.status_code == 200
         assertTemplateUsed(response, 'result_products.html')

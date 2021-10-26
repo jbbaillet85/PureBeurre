@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
-<br><br><br>
-<div style= "background-image: url('{{ product.image_url }}')">
-<br>
-<h1>{{ product.product_name }}</h1>
-<br>
-</div>
-<br>
-<br>
-</div>
-<br><br>
-<p>Nutriscore: {{ product.nutriscore_grade }}</p>
-<p><a href="{{ product.url }}">Fiche OpenFoodFact</a></p>
+{% block content %}        
+        <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <div style= "background-image: url('{{ product.image_url }}')">
+                        <br><br>
+                        <h1>{{ product.product_name }}</h1>
+                        <br><br>
+                        </div>
+                        <h2 class="text-white mt-0">Nutriscore: {{ product.nutriscore_grade }}</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 mb-4"></p>
+                        <a class="btn btn-light btn-xl" href="{{ product.url }}">Voir la fiche d'OpenFoodFact</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 {% endblock %}
