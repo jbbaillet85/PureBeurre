@@ -28,11 +28,11 @@ class TestProductsModel:
         Wr are creating a Category object, a user object and also a temporary user to pass Login Check,
         Then we are creating a FavouriteProduct object and testing if our is_favourite method is properly working
         """
-        category_vegetale = Category.objects.create(pnns_groups_1="vegetale")        
+        category_vegetale = Category.objects.create(pnns_groups_1 = "vegetale")        
         assert str(category_vegetale) == f"{category_vegetale.pnns_groups_1}"
     
     @pytest.mark.django_db
-    def test_category_model(self):
+    def test_favorite_model(self):
 
         """
         Wr are creating a Category object, a user object and also a temporary user to pass Login Check,

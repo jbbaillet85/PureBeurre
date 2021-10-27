@@ -27,12 +27,7 @@ class TestHomepageViews(TestCase):
         
     @pytest.mark.django_db
     def test_HomePage_result_products_View(self):
-
-        """
-        Testing if HomePage is properly rendered with 200 status code and in second assert,
-        we are making sure it returns the correct template 'homepage.html'
-        """
-        
+        pass
     
     @pytest.mark.django_db
     def test_mentions_legales_View(self):

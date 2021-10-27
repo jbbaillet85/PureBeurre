@@ -1,1 +1,1 @@
-web: gunicorn pureBeurre.wsgi.application
+web: gunicorn pureBeurre.wsgi
