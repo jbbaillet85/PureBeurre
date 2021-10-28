@@ -27,7 +27,13 @@ class TestHomepageViews(TestCase):
         
     @pytest.mark.django_db
     def test_HomePage_result_products_View(self):
-        pass
+        keyword = 'pizza'
+        temp_user = self.client.post('/products/result_products', {'search_product':keyword})
+        response = self.client.get(reverse('result_products'))
+        products = AlgoSubtitution(keyword)
+        context = {'search_product':keyword, 'products':products.result_search}
+        assert response.status_code == 200
+        #assertTemplateUsed(response, 'result_products.html', context)
     
     @pytest.mark.django_db
     def test_mentions_legales_View(self):
