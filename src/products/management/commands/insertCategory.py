@@ -5,9 +5,10 @@ import json
 
 URL_CATEGORIES = "https://fr.openfoodfacts.org/categories.json"
 
+
 class Command(BaseCommand):
     help = "allows you to populate the database of category objects "
-    
+
     def get_url_category(self, index_category):
         """get urls in openfoodfact json format 
 
@@ -23,7 +24,7 @@ class Command(BaseCommand):
         url_category = f"{response_json}.json"
         print(f"url_category: {index_category}: {url_category}")
         return url_category
-    
+
     def get_list_url_category(self):
         list_url_category = []
         index_category = 0
@@ -32,11 +33,11 @@ class Command(BaseCommand):
         for tags in range(0, count_of_tags_category):
             url_category = Command.get_url_category(self, index_category)
             list_url_category.append(url_category)
-            tags +=1
-            index_category +=1
+            tags += 1
+            index_category += 1
         print(f"list catégory: {list_url_category}")
         return list_url_category
-            
+
     def get_pnns_groups_1(self, url_category, index_tags):
         response = requests.get(url_category)
         response_json = json.loads(response.text)
@@ -59,6 +60,7 @@ class Command(BaseCommand):
             index_tags = 0
             count_of_products = 23
             for category in range(0, count_of_products):
-                category = Command.get_pnns_groups_1(self, url_json, index_tags)
+                category = Command.get_pnns_groups_1(
+                    self, url_json, index_tags)
                 print(category)
-                index_tags +=1
+                index_tags += 1

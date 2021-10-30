@@ -5,9 +5,10 @@ import json
 
 URL_CATEGORIES = "https://fr.openfoodfacts.org/categories.json"
 
+
 class Command(BaseCommand):
     help = "allows you to populate the database of product objects "
-    
+
     def get_url_category(self, index_category):
         """get urls in openfoodfact json format 
 
@@ -15,7 +16,7 @@ class Command(BaseCommand):
             index_category (int): [description]
 
         Returns:
-            str: returns the url of the category with the format json 
+            str: returns the url of the category with the format json
         """
         response = requests.get(URL_CATEGORIES)
         response_json = json.loads(response.text)
@@ -23,7 +24,7 @@ class Command(BaseCommand):
         url_category = f"{response_json}.json"
         print(f"url_category: {index_category}: {url_category}")
         return url_category
-    
+
     def get_list_url_category(self):
         list_url_category = []
         index_category = 0
@@ -32,11 +33,11 @@ class Command(BaseCommand):
         for tags in range(0, count_of_tags_category):
             url_category = Command.get_url_category(self, index_category)
             list_url_category.append(url_category)
-            tags +=1
-            index_category +=1
+            tags += 1
+            index_category += 1
         print(f"list catégory: {list_url_category}")
         return list_url_category
-    
+
     def url_exist(self, url):
         url_exist = Product.objects.get(url=url)
         if url != url_exist:
@@ -72,16 +73,17 @@ class Command(BaseCommand):
         url = product["url"]
         print(f"url du product: {url}")
         try:
-            product = Product.objects.create(product_name=product_name, 
-                          nutriscore_grade=nutriscore_grade, 
-                          image_url=image_url, 
-                          pnns_groups_1=Category.objects.get(pnns_groups_1=pnns_groups_1), 
-                          ingredients_text=ingredients_text, 
-                          url=url)
+            product = Product.objects.create(product_name=product_name,
+                                             nutriscore_grade=nutriscore_grade,
+                                             image_url=image_url,
+                                             pnns_groups_1=Category.objects.get(
+                                                 pnns_groups_1=pnns_groups_1),
+                                             ingredients_text=ingredients_text,
+                                             url=url)
         except:
             product = None
         return product
- 
+
     def handle(self, *args, **options):
         """[summary]
         """
@@ -90,6 +92,7 @@ class Command(BaseCommand):
             index_product = 0
             count_of_products = 23
             for product in range(0, count_of_products):
-                product = Command.get_product(self, url_category, index_product)
+                product = Command.get_product(
+                    self, url_category, index_product)
                 print(product)
-                index_product+=1
+                index_product += 1

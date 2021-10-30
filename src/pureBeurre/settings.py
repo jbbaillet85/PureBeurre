@@ -59,9 +59,9 @@ MIDDLEWARE = [
 ]
 
 if os.environ.get('ENV') == 'PRODUCTION':
-        # ...
-        # Simplified static file serving.
-        # https://warehouse.python.org/project/whitenoise/
+    # ...
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'pureBeurre.urls'
@@ -137,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR/"static",]
+STATICFILES_DIRS = [BASE_DIR/"static", ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

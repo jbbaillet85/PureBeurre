@@ -6,7 +6,6 @@ from spaceUser.views import register, identification, spaceUser, logout
 
 class TestSpaceUserUrls:
     def test_register_url(self):
-
         """
         Testing if the 'register' route maps to register
         """
@@ -16,7 +15,6 @@ class TestSpaceUserUrls:
         assert resolve(url).func, register
 
     def test_identification_url(self):
-
         """
         Testing if the 'identification' route maps to login
         """
@@ -24,9 +22,8 @@ class TestSpaceUserUrls:
         url = reverse('login')
         assert resolve(url).view_name == 'login'
         assert resolve(url).func, identification
-        
-    def test_spaceUser_url(self):
 
+    def test_spaceUser_url(self):
         """
         Testing if the 'spaceUser' route maps to spaceUser
         """
@@ -36,7 +33,6 @@ class TestSpaceUserUrls:
         assert resolve(url).func, spaceUser
 
     def test_logout_url(self):
-
         """
         Testing if the 'spaceUser' route maps to spaceUser
         """

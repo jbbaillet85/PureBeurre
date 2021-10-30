@@ -7,6 +7,8 @@ from products.models import Product, Favorites
 from spaceUser.models import User
 
 # Create your views here.
+
+
 def get_results_products(request):
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -16,31 +18,35 @@ def get_results_products(request):
             products = AlgoSubtitution(search_product)
             form_search = SearchForm()
             print(f"products: {products}")
-            context = {'form_search':form_search, 'products':products.result_search}
+            context = {'form_search': form_search,
+                       'products': products.result_search}
             return render(request, "result_products.html", context)
     else:
-        form =SearchForm()
+        form = SearchForm()
         context = {'form_search': form}
         return render(request, "homepage.html", context)
 
+
 def get_choice_substitution(request):
-    form =SearchForm()
+    form = SearchForm()
     if request.method == "POST":
         product_id = request.POST.get("product_id")
         substituted = Product.objects.get(id=product_id)
         substitutions = Substitution(product_id)
-    context = {'substituted':substituted, 'substitutions': substitutions.list_products,
+    context = {'substituted': substituted, 'substitutions': substitutions.list_products,
                'form_search': form}
     return render(request, "choice_subtitution.html", context)
+
 
 @login_required(login_url='login')
 def get_description_product(request):
     if request.method == "POST":
         product_id = request.POST.get("product_id")
         product = Product.objects.get(id=product_id)
-        form =SearchForm()
-    context = {'product':product, 'form_search': form}
-    return render(request, "description_product.html", context )
+        form = SearchForm()
+    context = {'product': product, 'form_search': form}
+    return render(request, "description_product.html", context)
+
 
 @login_required(login_url='login')
 def get_favorites(request):
@@ -49,14 +55,15 @@ def get_favorites(request):
     try:
         print(f"product_id: {product_id}")
         print(f"user: {request.user.id}")
-        Favorites.objects.create(product_id=product_id, user_id=request.user.id)
+        Favorites.objects.create(
+            product_id=product_id, user_id=request.user.id)
     except:
-            print("Le favori est déjàs enregistré")
+        print("Le favori est déjàs enregistré")
     user = request.user.id
     try:
         favorites = ProductsOfFavorites(user)
     except:
         favorites = None
-    form =SearchForm()
-    context={'favorites':favorites.products, 'form_search': form}
-    return render(request, "favorites.html", context )
+    form = SearchForm()
+    context = {'favorites': favorites.products, 'form_search': form}
+    return render(request, "favorites.html", context)

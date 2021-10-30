@@ -3,9 +3,10 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 import time
 
+
 class TestIdentification(StaticLiveServerTestCase):
     def test_register(self):
-        #Open the browser with webdrive
+        # Open the browser with webdrive
         self.browser = webdriver.Chrome("tests_functional/chromedriver")
         self.browser.get(self.live_server_url + reverse("register"))
 
@@ -24,6 +25,6 @@ class TestIdentification(StaticLiveServerTestCase):
 
         self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Créer son espace utilisateur")
         self.assertEqual(self.browser.current_url, self.live_server_url + reverse("register"))
-        #close the browser
+        # close the browser
         time.sleep(3)
         self.browser.close()
