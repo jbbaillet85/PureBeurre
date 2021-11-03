@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from products.models import Category, Product
 import requests
 import json
@@ -7,10 +7,10 @@ URL_CATEGORIES = "https://fr.openfoodfacts.org/categories.json"
 
 
 class Command(BaseCommand):
-    help = "allows you to populate the database of product objects "
+    help = "allows you to populate the database of product objects"
 
     def get_url_category(self, index_category):
-        """get urls in openfoodfact json format 
+        """get urls in openfoodfact json format
 
         Args:
             index_category (int): [description]
@@ -51,7 +51,7 @@ class Command(BaseCommand):
             index_product (int): [description]
 
         Returns:
-            [Product]: returns the product with the attributes 
+            [Product]: returns the product with the attributes
         """
         response = requests.get(url_category)
         response_json = json.loads(response.text)

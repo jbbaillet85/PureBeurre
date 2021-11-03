@@ -1,2 +1,2 @@
 [run]
-omit = pureBeurre/* src\manage.py, manage*, tests\*, homepage\tests\*, products\tests\*, spaceUser\tests\*,
+omit = pureBeurre\*, src\manage.py, manage*, tests\*, homepage\tests\*, products\tests\*, spaceUser\tests\*, products\management\commands\*

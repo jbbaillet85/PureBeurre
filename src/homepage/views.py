@@ -22,5 +22,5 @@ def homepage(request):
 
 
 def mentions_legales(request):
-    context = {}
+    context = {'form_search': SearchForm()}
     return render(request, "mentions_legales.html", context)

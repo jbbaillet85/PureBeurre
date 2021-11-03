@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from products.models import Category
 import requests
 import json
@@ -10,13 +10,13 @@ class Command(BaseCommand):
     help = "allows you to populate the database of category objects "
 
     def get_url_category(self, index_category):
-        """get urls in openfoodfact json format 
+        """get urls in openfoodfact json format
 
         Args:
             index_category (int): [description]
 
         Returns:
-            str: returns the url of the category with the format json 
+            str: returns the url of the category with the format json
         """
         response = requests.get(URL_CATEGORIES)
         response_json = json.loads(response.text)

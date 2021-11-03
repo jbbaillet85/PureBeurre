@@ -1,6 +1,5 @@
 from django.test import Client
 from django.urls import reverse
-from pytest_django.asserts import assertTemplateUsed
 
 import pytest
 
@@ -31,7 +30,7 @@ class TestSpaceUserView:
     @pytest.mark.django_db
     def test_logout_view(self):
         """
-        Testing if our LogoutView properly logouts user, In the first assert, we are checking if user is redirected to 
+        Testing if our LogoutView properly logouts user, In the first assert, we are checking if user is redirected to
         home route, for the second assert we are checking 302 redirect status code
         """
 

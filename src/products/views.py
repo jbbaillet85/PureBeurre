@@ -1,10 +1,8 @@
-from django.contrib.auth import login
 from django.shortcuts import render
 from homepage.forms import SearchForm
 from products.algoSubtitution import AlgoSubtitution, Substitution, ProductsOfFavorites
 from django.contrib.auth.decorators import login_required
 from products.models import Product, Favorites
-from spaceUser.models import User
 
 # Create your views here.
 

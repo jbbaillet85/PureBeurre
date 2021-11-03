@@ -1,6 +1,5 @@
 from django.contrib.postgres.search import SearchVector
 from products.models import Product, Favorites
-from spaceUser.models import User
 
 
 class AlgoSubtitution:

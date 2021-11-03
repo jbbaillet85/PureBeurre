@@ -1,13 +1,9 @@
-from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from .form import RegisterForm, LoginForm
 from homepage.forms import SearchForm
 from spaceUser.models import User
-
-# Create your views here.
 
 
 def register(request):
