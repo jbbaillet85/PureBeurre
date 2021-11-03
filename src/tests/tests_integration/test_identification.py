@@ -15,8 +15,9 @@ def test_register_identification_logout():
         'username': 'TestUser',
         'email': 'testuser@testing.com',
         'password1': 'TestPassword',
-        'password2': 'TestPassword'
+        'password2': 'TestPassword',
     }
+    temp_user = client.post(reverse('register'), credentials)
 
     # Connect this user with the `login` view
     response = client.post(
