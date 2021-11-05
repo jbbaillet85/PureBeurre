@@ -26,10 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--^w)s6l02d(i-od#y)8&(=+umje7txzzpa@!rrt--t(!px=@z9')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['purebeurre1.herokuapp.com', '127.0.0.1']
 
@@ -142,16 +139,15 @@ STATICFILES_DIRS = [BASE_DIR/"static", ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-    # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
-    # https://warehouse.python.org/project/whitenoise/
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 django_heroku.settings(locals())
