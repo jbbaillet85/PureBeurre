@@ -17,7 +17,8 @@ def get_results_products(request):
             form_search = SearchForm()
             print(f"products: {products}")
             context = {'form_search': form_search,
-                       'products': products.result_search}
+                       'products': products.result_search,
+                       "search_product":search_product}
             return render(request, "result_products.html", context)
     else:
         form = SearchForm()

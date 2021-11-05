@@ -2,10 +2,9 @@
 {% load static %}
 {% block content %}
 <br><br><br>
+<section class="page-section bg-primary" id="about">
 <h1>Résultat des produits</h1>
 <p>Mot clef: {{ search_product }}</p>
-        <!-- Portfolio-->
-<div id="portfolio">
     <div class="container-fluid p-0">
         <div class="row g-0">
 {% for product in products %}
@@ -19,4 +18,5 @@
 <br>
 {% endfor %}
 </div>
+</section>
 {% endblock %}
