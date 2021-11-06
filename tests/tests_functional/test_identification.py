@@ -7,7 +7,7 @@ import time
 class TestIdentification(StaticLiveServerTestCase):
     def test_register(self):
         # Open the browser with webdrive
-        self.browser = webdriver.Chrome("tests_functional/chromedriver")
+        self.browser = webdriver.Chrome("tests/tests_functional/chromedriver")
         self.browser.get(self.live_server_url + reverse("register"))
 
         id_username = self.browser.find_element_by_id("id_username")
