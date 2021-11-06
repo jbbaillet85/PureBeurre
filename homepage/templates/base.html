@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>{% block title %} Pure Beurre{% endblock %}</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="../static/assets/img/logo_pur_beurre-favicon.png" />
+        <link rel="icon" type="image/x-icon" href="{% static 'homepage/assets/img/logo_pur_beurre-favicon.png' %}" />
         <!-- Bootstrap Icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->
@@ -17,8 +17,8 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../static/css/styles.css" rel="stylesheet" />
-        <link href="../static/css/products_style.css" rel="stylesheet" />
+        <link href="{% static 'homepage/css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'homepage/css/products_style.css' %}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/e78a96a397.js"></script>
     </head>
     <body id="page-top">
@@ -26,7 +26,7 @@
         <section class="page-section bg-primary" id="about">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a href="{% url 'homepage' %}"><img src="../static/assets/img/logo_pur_beurre.png" alt="logo Pure Beurre"/></a>
+                <a href="{% url 'homepage' %}"><img src="{% static 'homepage/assets/img/logo_pur_beurre.png' %}" alt="logo Pure Beurre"/></a>
                 <a class="navbar-brand" href="{% url 'homepage' %}">Pure Beurre</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -37,13 +37,13 @@
                                 {{ form_search }}
                             </form></li>
                             {% if user.is_authenticated %}
-                        <li class="nav-item"><a href="{% url 'spaceUser' %}"><img src="../static/assets/img/icons8-utilisateur-30.png" alt="mon compte {{ request.user }}"/></a></li>
+                        <li class="nav-item"><a href="{% url 'spaceUser' %}"><img src="{% static 'homepage/assets/img/icons8-utilisateur-30.png' %}" alt="mon compte {{ request.user }}"/></a></li>
                             {% endif %}
                             {% if not user.is_authenticated %}
-                            <li class="nav-item"><a href="{% url 'register' %}"><img src="../static/assets/img/add-user.jpg" alt="Créer un compte"/></a></li>
+                            <li class="nav-item"><a href="{% url 'register' %}"><img src="{% static 'homepage/assets/img/add-user.jpg' %}" alt="Créer un compte"/></a></li>
                             {% endif %}
-                        <li class="nav-item"><a href="{% url 'favorites' %}"><img src="../static/assets/img/noun_Carrot_29691.png" alt="mes aliments"></li>
-                        <li class="nav-item"><a href="{% url 'logout' %}"><img src="../static/assets/img/se-deconnecter.png" alt="se deconnecter"></li></a>
+                        <li class="nav-item"><a href="{% url 'favorites' %}"><img src="{% static 'homepage/assets/img/noun_Carrot_29691.png' %}" alt="mes aliments"></li>
+                        <li class="nav-item"><a href="{% url 'logout' %}"><img src="{% static 'homepage/assets/img/se-deconnecter.png' %}" alt="se deconnecter"></li></a>
                     </ul>
                 </div>
             </div>
@@ -68,7 +68,7 @@
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <script src="../static/js/scripts.js"></script>
+        <script src="{% static 'homepage/js/scripts.js' %}"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
