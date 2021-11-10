@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<br><br><br>
-<h1>Se connecter à son espace utilisateur</h1>
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-lg-8 col-xl-6">
+                        <h2 class="mt-0">Se connecter à son espace utilisateur</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Entrez les informations suivantes afin de créer votre compte utilisateur</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content mb-5">
+                    <div class="col-lg-6">
 <form method="POST">
     {{ form.as_p }}
     {%  csrf_token %}
-    <input type="submit" value="Se connecter" action="{% url 'login' }"/>
+    <div class="d-grid"><input type="submit" value="Se connecter" class="btn btn-primary btn-xl" id="submitButton" action="{% url 'login' %}"></div>
 </form>
-{{ form.errors }}
-{{ message }}
-<p>Si vous n'avez pas de compte</p>
-<a href="{% url 'register' %}">s'enregistrer</a>
+<p>{{ form.errors }}</p>
+<p>{{ message }}</p>
+
+<p>Si vous n'avez pas de compte <a href="{% url 'register' %}">s'enregistrer</a></p>
 {% endblock %}

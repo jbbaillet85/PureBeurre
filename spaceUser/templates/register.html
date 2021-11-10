@@ -1,12 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<br><br><br>
-<h1>Créer son espace utilisateur</h1>
-<form method="POST">
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-left">
+                    <div class="col-lg-8 col-xl-6">
+                        <h2 class="mt-0">Créer son espace utilisateur</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Entrez les informations suivantes afin de créer votre compte utilisateur</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content mb-5">
+                    <div class="col-lg-6">
+<form method="POST" class="form-floating mb-3">
     {%  csrf_token %}
     {{ form.as_p }}
-    <p>{{ form.error_messages }}</p>
-    <input type="submit" value="Créer un compte" id="submit_register"/>
+    <p class="invalid-feedback">{{ form.error_messages }}</p>
+    <div class="d-grid"><input type="submit" value="Créer un compte" class="btn btn-primary btn-xl" id="submitButton" action="{% url 'register' %}"></div>
+                    </div>
+                </div>
 </form>
 <p>Si vous avez déjàs un compte <a href="{% url 'login' %}">se connecter</a></p>
+            </div>
+        </section>
 {% endblock %}

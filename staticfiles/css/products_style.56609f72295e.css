@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .product {
+      margin: auto;
+      flex: 0 0 0 33.3333%;
+  }
+
+#background_photo {
+    color:black;
+    background-color:white;
+    background-image:url("../assets/img/olenka-kotyk-eqsEZNCm4-c-unsplash.99dd1c12df6c.jpg");
+    margin:0;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1em;
+}
+
+.logo_pure_beurre{
+    width: 50px;
+}

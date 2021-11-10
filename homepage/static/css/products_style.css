@@ -17,3 +17,17 @@
     justify-content: space-between;
     margin-left: 1em;
 }
+
+.logo_pure_beurre{
+    width: 50px;
+    height: 50px;
+}
+.helptext {
+    display: block;
+    border: 1px solid #166ab3;
+    background-color: #d5dcff;
+    border-radius: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;}
