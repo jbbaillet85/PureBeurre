@@ -9,9 +9,9 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'last_name', 'email']
 
-        labels = {"password1": "",
+        labels = {"id_password1": "", "id_password2":'',
                   'last_name': '', 'username': '', 'email':''}
-        widgets = {"password": forms.PasswordInput(attrs={'placeholder': 'mot de passe'}),
+        widgets = {"password": forms.PasswordInput(),
                    'password': TextInput(attrs={'placeholder': 'mot de passe'}),
                    'username': TextInput(attrs={'placeholder': 'pseudo'}),
                    'last_name': TextInput(attrs={'placeholder': 'prénom'}),
@@ -23,6 +23,7 @@ class LoginForm(ModelForm):
         model = User
         fields = ['username', 'password']
         labels = {"password": "", "username": ""}
-        widgets = {"password": forms.PasswordInput(),
+        widgets = {'password': TextInput(attrs={'placeholder': 'mot de passe'}),
+                    "password": forms.PasswordInput(),
                    'username': TextInput(attrs={'placeholder': 'pseudo'}),
-                   'password': TextInput(attrs={'placeholder': 'mot de passe'})}
+                   }
