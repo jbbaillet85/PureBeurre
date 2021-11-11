@@ -29,7 +29,7 @@ class Command(BaseCommand):
         list_url_category = []
         index_category = 0
         tags = 0
-        count_of_tags_category = 5000
+        count_of_tags_category = 1200
         for tags in range(0, count_of_tags_category):
             url_category = Command.get_url_category(self, index_category)
             list_url_category.append(url_category)
