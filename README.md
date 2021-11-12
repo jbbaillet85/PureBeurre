@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jbbaillet85/PureBeurre.svg?branch=master)](https://travis-ci.org/jbbaillet85/PureBeurre)
 # siteWebPureBeurre
 ***
 Projet d'étude Openclassrooms 8: Créez une plateforme pour amateurs de Nutella
