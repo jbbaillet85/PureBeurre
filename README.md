@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a6fc9af52d5410b827538df3b991ed8)](https://app.codacy.com/gh/jbbaillet85/PureBeurre?utm_source=github.com&utm_medium=referral&utm_content=jbbaillet85/PureBeurre&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.org/jbbaillet85/PureBeurre.svg?branch=master)](https://travis-ci.org/jbbaillet85/PureBeurre)
 # siteWebPureBeurre
 ***
