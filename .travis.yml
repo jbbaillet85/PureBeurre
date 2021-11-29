@@ -8,7 +8,7 @@ python:
 before_script:
   - pip install -r requirements.txt
 
-env: DJANGO_SETTINGS_MODULE="pureBeurre.settings"
+env: DJANGO_SETTINGS_MODULE="pureBeurre.travis"
 
 services:
   - postgresql
