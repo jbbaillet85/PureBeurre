@@ -13,5 +13,4 @@ env: DJANGO_SETTINGS_MODULE="pureBeurre.travis"
 services:
   - postgresql
 # command to run tests
-script:
-  - pytest
+script: pytest
