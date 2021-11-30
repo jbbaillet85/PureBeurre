@@ -44,8 +44,7 @@ class Command(BaseCommand):
             return url
 
     def get_product(self, url_category, index_product):
-        """get openfoodfact data and create a Product object 
-
+        """get openfoodfact data and create a Product object
         Args:
             url_category (str): [description]
             index_product (int): [description]
@@ -59,16 +58,16 @@ class Command(BaseCommand):
         product_name = product["product_name"]
         try:
             nutriscore_grade = product["nutriscore_grade"]
-        except KeyError:
+        except KeyError: # noqa
             nutriscore_grade = "0"
         try:
             image_url = product["image_url"]
-        except KeyError:
+        except KeyError: # noqa
             image_url = ""
         pnns_groups_1 = product["pnns_groups_1"]
         try:
             ingredients_text = product["ingredients_text"]
-        except KeyError:
+        except KeyError: # noqa
             ingredients_text = "pas d'ingrédients renseignés"
         url = product["url"]
         print(f"url du product: {url}")
@@ -76,11 +75,11 @@ class Command(BaseCommand):
             product = Product.objects.create(product_name=product_name,
                                              nutriscore_grade=nutriscore_grade,
                                              image_url=image_url,
-                                             pnns_groups_1=Category.objects.get(
+                                             pnns_groups_1=Category.objects.get( # noqa
                                                  pnns_groups_1=pnns_groups_1),
                                              ingredients_text=ingredients_text,
                                              url=url)
-        except:
+        except: # noqa
             product = None
         return product
 

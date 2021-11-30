@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import dj_database_url
 import django_heroku
 import os
 
@@ -18,7 +17,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--^w)s6l02d(i-od#y)8&(=+umje7txzzpa@!rrt--t(!px=@z9')
+SECRET_KEY = os.environ.get('SECRET_KEY',
+                            '''django-insecure--^w)s6l02d(i-od#y)
+                            8&(=+umje7txzzpa@!rrt--t(!px=@z9''')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -95,16 +96,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', # noqa
     },
 ]
 AUTH_USER_MODEL = "spaceUser.User"
@@ -133,7 +134,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR + '/staticfiles'
 
 # Extra places for collectstatic to find static files.
-#STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static'), 'homepage/static')]
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static'), 'homepage/static')]
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # noqa
 
 django_heroku.settings(locals())

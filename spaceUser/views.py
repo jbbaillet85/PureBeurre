@@ -31,9 +31,9 @@ def identification(request):
     form_search = SearchForm()
     form = LoginForm()
     if request.method == "POST":
-        username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username,
+        email = request.POST['email']
+        user = authenticate(request, email=email,
                             password=password,)
         if user is not None:
             login(request, user)
@@ -42,8 +42,12 @@ def identification(request):
             return render(request, 'spaceUser.html', context)
         else:
             message = "Utilisateur ou mot de passe incorrect"
-            return render(request, 'login.html', {'form': form, 'form_search': form_search, "message": message})
-    return render(request, 'login.html', {'form': form, 'form_search': form_search})
+            return render(request, 'login.html', {
+                'form': form,
+                'form_search': form_search,
+                "message": message})
+    return render(request, 'login.html', {
+        'form': form, 'form_search': form_search})
 
 
 @login_required

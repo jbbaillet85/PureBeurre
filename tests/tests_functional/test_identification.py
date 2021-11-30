@@ -23,8 +23,10 @@ class TestIdentification(StaticLiveServerTestCase):
         signup = self.browser.find_element_by_id("submit_register")
         signup.submit()
 
-        self.assertEqual(self.browser.find_element_by_tag_name('h2').text, "Créer son espace utilisateur")
-        self.assertEqual(self.browser.current_url, self.live_server_url + reverse("register"))
+        self.assertEqual(self.browser.find_element_by_tag_name('h2').text,
+                         "Créer son espace utilisateur")
+        self.assertEqual(self.browser.current_url, self.live_server_url +
+                         reverse("register"))
         # close the browser
         time.sleep(3)
         self.browser.close()

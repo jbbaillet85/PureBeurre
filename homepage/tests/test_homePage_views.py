@@ -10,7 +10,8 @@ class TestHomepageViews(TestCase):
     @pytest.mark.django_db
     def test_HomePage_View(self):
         """
-        Testing if HomePage is properly rendered with 200 status code and in second assert,
+        Testing if HomePage is properly rendered with 200 status code
+        and in second assert,
         we are making sure it returns the correct template 'homepage.html'
         """
         response = self.client.get(reverse('homepage'))
@@ -25,8 +26,10 @@ class TestHomepageViews(TestCase):
     @pytest.mark.django_db
     def test_mentions_legales_View(self):
         """
-        Testing if mentions_legales is properly rendered with 200 status code and in second assert,
-        we are making sure it returns the correct template 'mentions_legales.html'
+        Testing if mentions_legales is properly rendered with 200 status code
+        and in second assert,
+        we are making sure it returns the correct template
+        'mentions_legales.html'
         """
         response = self.client.get(reverse('mentions_legales'))
         assert response.status_code == 200

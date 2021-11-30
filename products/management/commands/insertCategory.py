@@ -43,12 +43,12 @@ class Command(BaseCommand):
         response_json = json.loads(response.text)
         try:
             category = response_json["products"][index_tags]["pnns_groups_1"]
-        except:
+        except: # noqa
             category = "0"
         print(f"pnns_groups_1: {index_tags}: {category}")
         try:
             pnns_groups_1 = Category.objects.create(pnns_groups_1=category)
-        except:
+        except: # noqa
             pnns_groups_1 = f"{category} est déjà enregistré dans la base"
         return pnns_groups_1
 
