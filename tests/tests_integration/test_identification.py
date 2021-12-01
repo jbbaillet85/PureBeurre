@@ -22,7 +22,7 @@ def test_register_identification_logout():
 
     # Connect this user with the `login` view
     response = client.post(
-        reverse('login'), {'username': 'TestUser', 'password': 'TestPassword'})
+        reverse('login'), {'email': 'testuser@testing.com', 'password': 'TestPassword'})
 
     # Check that the redirection to the home page is done
     assert response.status_code == 200
