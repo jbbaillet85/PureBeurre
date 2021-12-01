@@ -16,7 +16,8 @@ class AlgoSubtitution:
         return result_search
 
     def __str__(self) -> str:
-        return f"keyword: {self.keyword} - result_search: {self.result_search}"
+        return f"""keyword: {self.keyword} -
+    result_search: {self.result_search}"""
 
 
 class Substitution:
@@ -57,4 +58,4 @@ class ProductsOfFavorites:
         return products
 
     def __str__(self) -> str:
-        return f"favorite: user: {self.id_user} - products: {self.products}"
+        return f"favorite: user: {self.id_user} - products: {self.products}" 
