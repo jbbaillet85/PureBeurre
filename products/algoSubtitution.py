@@ -8,14 +8,16 @@ class AlgoSubtitution:
         self.result_search = self.search_products()
 
     def search_products(self):
-        search = SearchVector("product_name") + SearchVector("ingredients_text") + \
+        search = SearchVector("product_name") + \
+            SearchVector("ingredients_text") + \
             SearchVector("url") + SearchVector("pnns_groups_1")
         result_search = Product.objects.annotate(search=search).filter(
             search=self.keyword).order_by("nutriscore_grade")
         return result_search
 
     def __str__(self) -> str:
-        return f"keyword: {self.keyword} - result_search: {self.result_search}"
+        return f"""keyword: {self.keyword} -
+    result_search: {self.result_search}"""
 
 
 class Substitution:
@@ -25,12 +27,16 @@ class Substitution:
         self.product_id = product_id
         self.product = Product.objects.get(id=self.product_id)
         self.category = self.product.pnns_groups_1
-        self.nutriscore = Substitution.nutriscore[self.product.nutriscore_grade]
+        self.nutriscore = Substitution.nutriscore[
+            self.product.nutriscore_grade]
         self.list_products = self.get_list_products_of_category_after_search()
 
     def get_list_products_of_category_after_search(self):
-        list_products = Product.objects.filter(pnns_groups_1=self.category).exclude(
-            nutriscore_grade="0").filter(nutriscore_grade__gt=self.nutriscore).order_by("nutriscore_grade")[:6]
+        list_products = Product.objects.filter(
+            pnns_groups_1=self.category).exclude(
+            nutriscore_grade="0").filter(
+            nutriscore_grade__gt=self.nutriscore).order_by(
+            "nutriscore_grade")[:6]
         print(f"list products: {list_products}")
         return list_products
 
@@ -52,4 +58,4 @@ class ProductsOfFavorites:
         return products
 
     def __str__(self) -> str:
-        return f"favorite: user: {self.id_user} - products: {self.products}"
+        return f"favorite: user: {self.id_user} - products: {self.products}" 

@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/jbbaillet85/PureBeurre.svg?branch=master)](https://travis-ci.org/jbbaillet85/PureBeurre)
+[![wakatime](https://wakatime.com/badge/user/648b0556-0c0e-4e9d-b952-2bea950dabe6.svg)](https://wakatime.com/@648b0556-0c0e-4e9d-b952-2bea950dabe6)
+[![Build Status](https://travis-ci.org/jbbaillet85/PureBeurre.svg?branch=main)](https://travis-ci.org/jbbaillet85/PureBeurre)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fbf569df5b464d12afaefc1cb0124b84)](https://www.codacy.com/gh/jbbaillet85/PureBeurre/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jbbaillet85/PureBeurre&amp;utm_campaign=Badge_Grade)
 # siteWebPureBeurre
 ***
 Projet d'étude Openclassrooms 8: Créez une plateforme pour amateurs de Nutella

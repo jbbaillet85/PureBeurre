@@ -17,14 +17,14 @@ class TestAlgoSustitution:
         product = Product.objects.create(id=1, pnns_groups_1=category_vegetale)
         algo = Substitution(product.id)
         assert str(
-            algo) == f"category: {algo.category} - products: {algo.list_products}"
+            algo) == f"category: {algo.category} - products: {algo.list_products}" # noqa
 
     @pytest.mark.django_db
     def test_ProductsOfFavorites(self):
         client = Client()
-        user = User.objects.create(
+        user = User.objects.create(username='jb',
             last_name='jb', email='user@mail.com', password='password')
         client.force_login(user)
         algo = ProductsOfFavorites(user.id)
         assert str(
-            algo) == f"favorite: user: {algo.id_user} - products: {algo.products}"
+            algo) == f"favorite: user: {algo.id_user} - products: {algo.products}" # noqa

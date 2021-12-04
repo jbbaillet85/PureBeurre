@@ -9,7 +9,8 @@ from django.contrib import auth
 def test_register_identification_logout():
     client = Client()
 
-    # Register a user using the `register` view in order to register it in the database
+    # Register a user using the `register` view
+    # in order to register it in the database
     credentials = {
         'last_name': 'User',
         'username': 'TestUser',
@@ -17,11 +18,11 @@ def test_register_identification_logout():
         'password1': 'TestPassword',
         'password2': 'TestPassword',
     }
-    temp_user = client.post(reverse('register'), credentials)
+    temp_user = client.post(reverse('register'), credentials) # noqa
 
     # Connect this user with the `login` view
     response = client.post(
-        reverse('login'), {'username': 'TestUser', 'password': 'TestPassword'})
+        reverse('login'), {'email': 'testuser@testing.com', 'password': 'TestPassword'})
 
     # Check that the redirection to the home page is done
     assert response.status_code == 200

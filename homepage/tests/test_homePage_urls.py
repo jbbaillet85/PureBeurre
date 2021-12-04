@@ -11,7 +11,8 @@ class TestHomepageUrls:
         assert resolve(url).func, homepage
 
     def test_mentions_legales_url(self):
-        """ Testing if the 'mentions_legales' route maps to our 'mentions_legales' view """
+        """ Testing if the 'mentions_legales' route maps
+        to our 'mentions_legales' view """
 
         url = reverse('mentions_legales')
         assert resolve(url).view_name == 'mentions_legales'
