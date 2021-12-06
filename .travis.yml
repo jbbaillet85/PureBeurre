@@ -1,14 +1,38 @@
+dist: bionic
 language: python
-python:
-  - "3.8"
-  - "3.9"
-# command to install dependencies
-before_script:
-  - pip install -r requirements.txt
 
-env: DJANGO_SETTINGS_MODULE="pureBeurre.travis"
+python:
+  - '3.9'
+
+addons:
+  chrome: stable
+
+branches:
+  only:
+    - main
+
+install:
+  - pip install -r requirements.txt
+  - wget -N https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip -P ~/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
+  before_script:
+  - pip install python-coveralls
+  - pip install pytest-cov
+
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE="pureBeurre.travis"
 
 services:
   - postgresql
-# command to run tests
-script: pytest
+
+script:
+  - pytest
+
+after_success:
+  coveralls
