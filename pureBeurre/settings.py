@@ -9,9 +9,14 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+<<<<<<< HEAD
+import dj_database_url
+=======
 import django_heroku
+>>>>>>> 210ebc1c0fee30ee20610529e136a568a6180c1c
 import os
-
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,9 +27,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY',
                             8&(=+umje7txzzpa@!rrt--t(!px=@z9''')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =  False
 
-ALLOWED_HOSTS = ['purebeurre1.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['purebeurre1.herokuapp.com','localhost','127.0.0.1', '46.101.97.111']
 
 
 # Application definition
@@ -83,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'purebeurre',
-        'USER': 'purebeurreuser',
-        'PASSWORD': os.environ.get("passwordDBPureBeurre"),
+        'USER': 'jbbaillet',
+        'PASSWORD': 'iotabeta85',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -111,6 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = "spaceUser.User"
 
 # Internationalization
+
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'fr-FR'
@@ -137,4 +143,26 @@ STATIC_ROOT = BASE_DIR + '/staticfiles'
 # STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static'), 'homepage/static')]
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # noqa
 
+<<<<<<< HEAD
+sentry_sdk.init(
+    dsn="https://75c307e1a11144e3b43e155c5dff1691@o639858.ingest.sentry.io/6081112",
+    integrations=[DjangoIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production,
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True,
+
+    # By default the SDK will try to use the SENTRY_RELEASE
+    # environment variable, or infer a git commit
+    # SHA as release, however you may want to set
+    # something more human-readable.
+    # release="myapp@1.0.0",
+)
+=======
 django_heroku.settings(locals())
+>>>>>>> 210ebc1c0fee30ee20610529e136a568a6180c1c
